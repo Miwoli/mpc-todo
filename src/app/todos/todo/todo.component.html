@@ -1,0 +1,11 @@
+<li [ngClass]="{'todo__add': !todo.id}">
+  <form #todoForm="ngForm" name="todoForm" (ngSubmit)="submit()" >
+    <label>
+      <input type="checkbox" name="isCompleted" [(ngModel)]="todo.isCompleted" #isCompleted="ngModel" [disabled]="todo.isCompleted && todo.id" />
+      <input [ngClass]="{'todo__input': !todo.id}" type="text" name="task" [(ngModel)]="todo.task" #task="ngModel" />
+    </label>
+  </form>
+  <div *ngIf="todo.id" class="delete__container">
+    <img (click)="delete()" src="../../../assets/baseline-delete_outline-24px.svg">
+  </div>
+</li>
