@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
+## Docker build
+
+Run `docker build -t <name> .` to build Docker image of this app for development purpose, or run `docker build -f Dockerfile-prod -t <name> .` to build production version of the app.
+
+## Run app (Docker version)
+
+Run `docker run -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --rm <name>`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
