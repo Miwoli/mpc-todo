@@ -21,14 +21,23 @@ export class TodoService {
     const me = this;
 
     return me.http.get<any>(me.baseUrl, { observe: 'response' })
-      .pipe(map(response => response.body.data.map(todo => (new Todo()).fromJson(todo))));
+      .pipe(map(response => response.body.data.map(todo => {
+        return (new Todo()).fromJson(todo);
+      })))
   }
 
   public post(todo): Observable<any> {
     const me = this;
 
-    return me.http.post<any>(me.baseUrl, todo, { observe: 'response' })
-      .pipe(map(response => (new Todo()).fromJson(response.body.data)));
+    const formData: FormData = new FormData();
+    if (todo.id) {
+      formData.append('id', todo.id);
+    }
+    formData.append('task', todo.task);
+    todo.isCompleted ? formData.append('is_completed', '1') : formData.append('is_completed', '0')
+
+    return me.http.post<any>(me.baseUrl, formData, { observe: 'response' })
+      .pipe(map(response => response));
   }
 
   public delete(todo):Observable<any> {
