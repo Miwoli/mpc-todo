@@ -1,0 +1,21 @@
+.todo__container {
+    margin: 2rem auto;
+    width: 20rem;
+
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+
+    color: #333333;
+    font-family: Tahoma;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    p {
+        padding: 10px;
+        text-align: center;
+    }
+}

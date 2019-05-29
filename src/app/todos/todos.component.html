@@ -1,0 +1,7 @@
+<div class="todo__container">
+  <ul>
+    <app-todo [todo]="newTodo" (change)="getAll()"></app-todo>
+    <app-todo *ngFor="let todo of todos" [todo]="todo" (change)="getAll()"></app-todo>
+  </ul>
+  <p *ngIf="empty">It's soooo empty out here. Put some life into the list and create a new task!</p>
+</div>
