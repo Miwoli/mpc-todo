@@ -27,16 +27,28 @@ export class TodoComponent implements OnInit {
       me.todo.isCompleted = false;
     }
 
-    me.todoService.post(me.todo).subscribe(() => {
-      me.change.emit(null);
+    me.todoService.post(me.todo).subscribe((res) => {
+      if (me.todo.id) {
+        me.todo.task = res.body.data[0].task;
+      }
+      if (res.status === 200) {
+        me.change.emit(null);
+      }
     });
+  }
+
+  public check() {
+    const me = this;
+
+    if (me.todo.id) {
+      me.submit();
+    }
   }
 
   public delete() {
     const me = this;
 
     me.todoService.delete(me.todo).subscribe((res) => {
-      console.log(res);
       if (res.status === 200) {
         me.change.emit(null);
       }

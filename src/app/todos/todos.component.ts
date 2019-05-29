@@ -29,8 +29,10 @@ export class TodosComponent implements OnInit {
 
     me.todoService.getAll().subscribe(todos => {
       me.todos = todos;
+      me.empty = false;
     }, (err) => {
       if (err.status === 404) {
+        me.todos = [];
         me.empty = true;
       } else {
         console.error(err);

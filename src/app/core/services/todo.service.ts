@@ -22,9 +22,8 @@ export class TodoService {
 
     return me.http.get<any>(me.baseUrl, { observe: 'response' })
       .pipe(map(response => response.body.data.map(todo => {
-        console.log(todo);
         return (new Todo()).fromJson(todo);
-      })));
+      })))
   }
 
   public post(todo): Observable<any> {
@@ -38,7 +37,7 @@ export class TodoService {
     todo.isCompleted ? formData.append('is_completed', '1') : formData.append('is_completed', '0')
 
     return me.http.post<any>(me.baseUrl, formData, { observe: 'response' })
-      .pipe(map(response => (new Todo()).fromJson(response.body.data)));
+      .pipe(map(response => response));
   }
 
   public delete(todo):Observable<any> {
